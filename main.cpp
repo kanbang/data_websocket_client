@@ -10,13 +10,13 @@
 #include <string.h>  
 #include <iostream> 
 
-#include "MyZmqConsume.h"
-#include "MyZmqPublish.h"
-#include "MyLogger.h"
-#include "MyMarket.h"
+#include "tools/MyZmqConsume.h"
+#include "tools/MyZmqPublish.h"
+#include "tools/MyLogger.h"
+#include "tools/MyMarket.h"
 
-#include "MyWebSocketMarket_Binance_f.h"
-#include "MyWebSocketMarket_Okx_f.h"
+#include "clients/MyWebSocketMarket_Binance_f.h"
+#include "clients/MyWebSocketMarket_Okx_f.h"
 
 using namespace std;
 
