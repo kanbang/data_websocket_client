@@ -1,10 +1,10 @@
 {
     "WSMarketConfig":
     {
-        "apollox-f_1":
+        "binance-f_1":
         {
             "isstart":"1",
-            "wsclass":"apollox-f",
+            "wsclass":"okx-f",
             "depth":
             {
                 "type":"full",

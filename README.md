@@ -23,6 +23,9 @@ https://github.com/ithewei/libhv/blob/master/README-CN.md
 3. zmq 组件 libzmq-4.3.4，其实版本不限制
 https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
+4. 不使用 rapidjson libhv  zmq  openssl 之外的其他三方库
+
+5. 原工程可编译运行，模式是 64位 release 模式
 
 ##配置文件说明
 

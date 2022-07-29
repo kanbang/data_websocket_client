@@ -20,7 +20,7 @@
 #define H_MAXSTRING_LEN 1024
 #define H_MINVALUE 0.00000001
 #define H_MAXVALUE 1000000000
-
+#define H_PATH_MYLOG  ".//LOG//MyLog.txt"
 
 #pragma warning(disable:4996)
 
@@ -29,11 +29,8 @@
 class MyLogger;
 class MyMySql;
 class MyZmqPublish;
-class MyMarket;
-
 
 extern MyLogger *gcp_mylogger;
-extern MyMarket * gcp_mymarket;
 
 extern std::map<std::string, MyZmqPublish*> gcp_map_zmqpublish;
 
@@ -42,12 +39,30 @@ int gf_split3(const std::string& str, std::vector<std::string>& ret_, std::strin
 int gf_uuid(char * buffer);
 long long gf_getlltime();
 
-///////////////////////////////////自定义时间格式
-///////////////////////////////
+//
+struct STR_MYTIME
+{
+	char mytime_str[2046];           //
+	int mytime_int_sec;              //
+	int mytime_int_mil;              //
+
+	long long mytime_ll;            //
+	SYSTEMTIME mytime_st;           //
+	FILETIME mytime_ft_real;        //
+	FILETIME mytime_ft_temp;        //
+	ULARGE_INTEGER mytime_ui;       //
+
+	STR_MYTIME()
+	{
+		mytime_int_sec = 0;
+		mytime_int_mil = 0;
+		mytime_ll = 0;
+		strcpy(mytime_str, "");
+	}
+};
 
 
-
-// 日志结构
+//
 struct STR_LOG
 {
 	int level;
@@ -61,7 +76,6 @@ struct STR_LOG
 		level = 0;
 	}
 };
-
 
 
 #endif

@@ -1,8 +1,7 @@
 #include "MyWebSocketMarket_Okx_f.h"
-#include "MyStruct.h"
-#include "MyMarket.h"
-#include "MyLogger.h"
-#include "MyZmqPublish.h"
+#include "../tools/MyStruct.h"
+#include "../tools/MyLogger.h"
+#include "../tools/MyZmqPublish.h"
 
 
 MyWebSocketMarket_Okx_f::MyWebSocketMarket_Okx_f(std::string clientid) :MyWebSocketMarket(clientid)
@@ -84,12 +83,14 @@ void MyWebSocketMarket_Okx_f::on_close()
 
 
 
+
+
 int MyWebSocketMarket_Okx_f::mf_subscribe_all()
 {
 	mf_subscribe_depth_all();
 	mf_subscribe_trade_all();
 
-	m_connect_status = 2; // å®Œæˆæ‰€æœ‰è®¢é˜…
+	m_connect_status = 2; // Íê³ÉËùÓĞ¶©ÔÄ
 
 	return 0;
 }
@@ -228,9 +229,6 @@ int MyWebSocketMarket_Okx_f::cf_sub_unsub_all(int suborunsub, int subchannel, in
 		mycnl = "trades";
 	}
 	
-	
-
-	char logstr[1024];
 	int channelsum = 0;
 	int index = 0;
 	int channelcount = 0;
@@ -529,7 +527,7 @@ int MyWebSocketMarket_Okx_f::mf_parse_depth_full(Document& doc, long long receiv
 
 		if (volume > H_MINVALUE)
 		{
-			if (mymap_ask[price].vol == 0) // æœ¬æ¡£ç¬¬ä¸€æ¬¡èµ‹å€¼
+			if (mymap_ask[price].vol == 0) // ±¾µµµÚÒ»´Î¸³Öµ
 			{
 				strcpy(mymap_ask[price].pricestr, askdata[i][0].GetString());
 			}
@@ -553,7 +551,7 @@ int MyWebSocketMarket_Okx_f::mf_parse_depth_full(Document& doc, long long receiv
 
 		if (volume > H_MINVALUE)
 		{
-			if (mymap_bid[price].vol == 0) // æœ¬æ¡£ç¬¬ä¸€æ¬¡èµ‹å€¼
+			if (mymap_bid[price].vol == 0) // ±¾µµµÚÒ»´Î¸³Öµ
 			{
 				strcpy(mymap_bid[price].pricestr, biddata[i][0].GetString());
 			}
@@ -566,8 +564,6 @@ int MyWebSocketMarket_Okx_f::mf_parse_depth_full(Document& doc, long long receiv
 			mymap_bid.erase(price);
 		}
 	}
-
-	LeaveCriticalSection(&m_cs_update_depth);
 
 
 	rapidjson::StringBuffer s;
@@ -647,6 +643,7 @@ int MyWebSocketMarket_Okx_f::mf_parse_depth_full(Document& doc, long long receiv
 
 	std::string mymsg = s.GetString();
 
+	LeaveCriticalSection(&m_cs_update_depth);
 
 	if (bidsize > 0 && asksize > 0)
 	{
@@ -800,22 +797,7 @@ const UINT32 table[] = {
 
 DWORD MyWebSocketMarket_Okx_f::cf_getCRC(BYTE* ptr, DWORD Size)
 {
-	DWORD crcTable[256], crcTmp1;
-
-	// åŠ¨æ€ç”ŸæˆCRC-32è¡¨
-	/*
-	for (int i = 0; i < 256; i++)
-	{
-		crcTmp1 = i;
-		for (int j = 8; j > 0; j--)
-		{
-			if (crcTmp1 & 1) crcTmp1 = (crcTmp1 >> 1) ^ 0xEDB88320L;
-			else crcTmp1 >>= 1;
-		}
-		crcTable[i] = crcTmp1;
-	}*/
-
-	// è®¡ç®—CRC32å€¼
+	// ¼ÆËãCRC32Öµ
 	DWORD crcTmp2 = 0xFFFFFFFF;
 	while (Size--)
 	{
@@ -892,6 +874,12 @@ bool MyWebSocketMarket_Okx_f::cf_check_depthfull(const char* stdinstid, UINT32 e
 		return true;
 	}
 
+	/*
+	for (int i = 0; i < 1000000; i++)
+	{
+		UINT32 ss = cf_getCRC((unsigned char*)checkstr, strlen(checkstr));
+	}*/
+	
 
 	if (cf_getCRC((unsigned char*)checkstr, strlen(checkstr)) == excrc)
 	{

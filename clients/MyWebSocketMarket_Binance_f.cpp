@@ -1,8 +1,7 @@
 #include "MyWebSocketMarket_Binance_f.h"
-#include "MyStruct.h"
-#include "MyMarket.h"
-#include "MyLogger.h"
-#include "MyZmqPublish.h"
+#include "../tools/MyStruct.h"
+#include "../tools/MyLogger.h"
+#include "../tools/MyZmqPublish.h"
 
 MyWebSocketMarket_Binance_f::MyWebSocketMarket_Binance_f(std::string clientid):MyWebSocketMarket(clientid)
 {
@@ -88,7 +87,7 @@ int MyWebSocketMarket_Binance_f::mf_subscribe_all()
 {
 	mf_subscribe_depth_all();
 	mf_subscribe_trade_all();
-	m_connect_status = 2; // å®Œæˆæ‰€æœ‰è®¢é˜…
+	m_connect_status = 2; // Íê³ÉËùÓÐ¶©ÔÄ
 
 	return 0;
 }
@@ -135,7 +134,7 @@ int MyWebSocketMarket_Binance_f::cf_restreq_all_depthimage(int level)
 
 		req.headers["ACCESS-TIMESTAMP"] = myts.c_str();
 		req.headers["Connection"] = "Keep-Alive";
-		//req->headers["Content-Type"] = "application/json";  //GET ä¸èƒ½æœ‰æ­¤é¡¹ç›®
+		//req->headers["Content-Type"] = "application/json";  //GET ²»ÄÜÓÐ´ËÏîÄ¿
 		req.headers["locale"] = "en-US";
 
 		//req->body = "";
@@ -669,8 +668,6 @@ int MyWebSocketMarket_Binance_f::mf_parse_depth_full(Document& doc, long long re
 	}
 
 
-	LeaveCriticalSection(&m_cs_update_depth);
-
 	rapidjson::StringBuffer s;
 	rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 	writer.StartObject();
@@ -748,6 +745,7 @@ int MyWebSocketMarket_Binance_f::mf_parse_depth_full(Document& doc, long long re
 
 	std::string mymsg = s.GetString();
 
+	LeaveCriticalSection(&m_cs_update_depth);
 
 	if (bidsize > 0 && asksize > 0 && c_needflash_depthfull == 0)
 	{
@@ -755,11 +753,6 @@ int MyWebSocketMarket_Binance_f::mf_parse_depth_full(Document& doc, long long re
 		{
 			gcp_map_zmqpublish[m_wsid]->mf_send(mymsg.c_str());
 			
-			/*
-			if (strcmp(instid, "binance-f_BTC-USDT") == 0)
-			{
-				printf("%s\n >>>%lld", mymsg.c_str(), m_recvcount_depth);
-			}*/	
 		}
 		else
 		{
@@ -847,6 +840,9 @@ int MyWebSocketMarket_Binance_f::mf_parse_trade(Document& doc, long long receive
 
 	return 0;
 }
+
+
+
 
 
 

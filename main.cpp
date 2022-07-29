@@ -12,7 +12,6 @@
 
 #include "tools/MyZmqPublish.h"
 #include "tools/MyLogger.h"
-#include "tools/MyMarket.h"
 
 #include "clients/MyWebSocketMarket_Binance_f.h"
 #include "clients/MyWebSocketMarket_Okx_f.h"
@@ -22,25 +21,20 @@ using namespace std;
 using namespace rapidjson;
 using namespace std;
 
+Document* gcp_config = NULL;
 
-// 日志对象
 MyLogger *gcp_mylogger = NULL;
 
-// 接收并解析行情的 zmq对象
 std::map<std::string, MyZmqPublish*> gcp_map_zmqpublish;
 
-// 行情对象
-MyMarket * gcp_mymarket;
 
-// 行情 接收和解析 线程（一个端口一个线程）
 thread * gcp_thread_zmqconsume[30];
 
 
-// ws 对象指针数组
 std::vector<MyWebSocketMarket*> gcp_vec_mywebsocktmarket;
 
 
-/////////////////////////////////////////////////////// 工具函数
+/////////////////////////////////////////////////////// 
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
@@ -109,7 +103,7 @@ long long gf_getlltime()
 
 
 
-////////////////////////////////////////// 功能区函数
+////////////////////////////////////////// 
 ////////////////////////////////////////// 
 ////////////////////////////////////////// 
 
@@ -200,7 +194,7 @@ int init_market()
 				for (int i = 0; i < symbolsize; i++)
 				{
 					string fullsymbolname = wsclassname + "_" + symbolarray[i].GetString();
-					newws->m_vec_subinfo_depth.push_back(fullsymbolname.c_str());
+					newws->mf_add_subinfo(fullsymbolname.c_str(),1);
 				}
 			}
 			else if (channelname == "trade")
@@ -210,7 +204,7 @@ int init_market()
 				for (int i = 0; i < symbolsize; i++)
 				{
 					string fullsymbolname = wsclassname + "_" + symbolarray[i].GetString();
-					newws->m_vec_subinfo_trade.push_back(fullsymbolname.c_str());
+					newws->mf_add_subinfo(fullsymbolname.c_str(), 2);
 				}
 			}
 		}
