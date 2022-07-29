@@ -85,3 +85,57 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
         }
     }
 }
+
+##数据格式
+trades：
+
+{
+    "instrument_id": "binance-f_BTC-USDT_trades", #名称
+    "data_type": "trades-feed",  #数据类型
+    "exchange": "BINANCE_FUTURES", #交易所——品种类型名称
+    "symbol": "BTC-USDT-PERP", #品种名称
+    "side": "buy", #买卖方向
+    "amount": 0.1, #成交数量
+    "price": 47412.3, #成交金额
+    "id": "1154117591", #成交ID
+    "type": None, #成交类型
+    "timestamp": 1648623478.337, #成交时间戳
+    "receipt_timestamp": 1648623478.5280075 #本地接受数据时间戳
+}
+
+orderbook：
+
+{
+    "instrument_id": "binance-f_BTC-USDT_depth-10",
+    "data_type": "depth-10-feed",
+    "exchange": "BINANCE_FUTURES",
+    "symbol": "BTC-USDT-PERP",
+    "book": {
+        "bid": {
+            "47412.2": 4.459,
+            "47412.1": 0.001,
+            "47411.6": 0.5,
+            "47411.2": 2,
+            "47409.5": 0.05,
+            "47409.4": 0.097,
+            "47409.3": 4.874,
+            "47408.9": 0.011,
+            "47408.8": 0.838,
+            "47408.7": 4.462
+        },
+        "ask": {
+            "47412.3": 0.017,
+            "47412.7": 0.022,
+            "47412.8": 0.117,
+            "47412.9": 0.117,
+            "47413.1": 0.001,
+            "47413.4": 0.117,
+            "47414.1": 0.005,
+            "47415.7": 0.008,
+            "47415.9": 0.065,
+            "47416": 0.189
+        }
+    },
+    "timestamp": 1648623478.583, #成交时间戳
+    "receipt_timestamp": 1648623478.6130261 #本地接受数据时间戳
+}
