@@ -1,5 +1,5 @@
 
-程序介绍
+##程序介绍
 
 1.  从config文件读取配置信息
 2.  从指定网站订阅websocket数据
@@ -7,7 +7,7 @@
 4.  将数据转发到zmq端口
 
 
-开发依赖
+##开发依赖
 
 1. json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
 
@@ -18,11 +18,7 @@ https://github.com/ithewei/libhv/blob/master/README-CN.md
 https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
 
-
-
-
-
-配置文件说明
+##配置文件说明
 
 一、启动流程
 1.  编辑 myconfig.json 配置文件
