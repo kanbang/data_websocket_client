@@ -1,15 +1,19 @@
 程序介绍
+从config文件读取配置信息
 从指定网站订阅websocket数据
 将数据统一为标准的json格式
 将数据转发到zmq端口
 
 开发依赖
 
-一、json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
+1. json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
 
-二、https websocket 通讯使用 libhv(开源的三方库，项目在github上)
+2. https websocket 通讯使用 libhv(开源的三方库，项目在github上)
+https://github.com/ithewei/libhv/blob/master/README-CN.md
 
-三、zmq 版本不限制
+3. zmq 组件 libzmq-4.3.4，其实版本不限制
+https://zeromq.org/get-started/?language=cpp&library=zmqpp#
+
 
 
 
