@@ -10,7 +10,6 @@
 #include <string.h>  
 #include <iostream> 
 
-#include "tools/MyZmqConsume.h"
 #include "tools/MyZmqPublish.h"
 #include "tools/MyLogger.h"
 #include "tools/MyMarket.h"

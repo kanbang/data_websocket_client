@@ -6,6 +6,12 @@
 3.  将数据统一为标准的json格式
 4.  将数据转发到zmq端口
 
+##开发环境
+
+vs2019
+windows10
+windows server 2019
+
 
 ##开发依赖
 
