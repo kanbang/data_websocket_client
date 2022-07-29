@@ -1,3 +1,8 @@
+程序介绍
+从指定网站订阅websocket数据
+将数据统一为标准的json格式
+将数据转发到zmq端口
+
 开发依赖
 
 一、json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
