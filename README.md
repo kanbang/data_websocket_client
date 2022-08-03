@@ -52,7 +52,7 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
 三、注意
 如果需要同时订阅全品种信息，考虑到python的接收效率 和 交易所单连接可支持的最大订阅数量，建议 分成若干个 连接通道，如下（"binance-f_1"， "binance-f_2"）
-
+```json
 {
     "WSMarketConfig":
     {
@@ -88,6 +88,7 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
         }
     }
 }
+```
 
 ##数据格式
 trades：
