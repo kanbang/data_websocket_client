@@ -1,0 +1,23 @@
+{
+    "WSMarketConfig": {
+        "binance-f_1": {
+            "isstart": "1",
+            "wsclass": "bitfinex-f",
+            "depth": {
+                "type": "full",
+                "level": "25",
+                "symbol": [
+                    "BTC-USDT",
+                    "ETH-USDT"
+                ]
+            },
+            "trade": {
+                "symbol": [
+                    "BTC-USDT",
+                    "ETH-USDT"
+                ]
+            },
+            "zmqstr": "tcp://127.0.0.1:5551"
+        }
+    }
+}
