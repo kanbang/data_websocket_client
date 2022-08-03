@@ -2,10 +2,10 @@
 
 1.程序介绍
 
-1.1  从config文件读取配置信息
-1.2  从指定网站订阅websocket数据
-1.3  将数据统一为标准的json格式
-1.4  将数据转发到zmq端口
+1.  从config文件读取配置信息
+2.  从指定网站订阅websocket数据
+3. 将数据统一为标准的json格式
+4.  将数据转发到zmq端口
 
 2.开发环境
 
@@ -16,17 +16,17 @@ windows server 2019
 
 3.开发依赖
 
-3.1 json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
+1. json 解析库  使用 rapidjson (开源的三方库，只需包含头文件即可，所有头文件在 rapidjson_include.rar)
 
-3.2 https websocket 通讯使用 libhv(开源的三方库，项目在github上)
+2. https websocket 通讯使用 libhv(开源的三方库，项目在github上)
 https://github.com/ithewei/libhv/blob/master/README-CN.md
 
-3.3 zmq 组件 libzmq-4.3.4，其实版本不限制
+3. zmq 组件 libzmq-4.3.4，其实版本不限制
 https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
-3.4 不使用 rapidjson libhv  zmq  openssl 之外的其他三方库
+4. 不使用 rapidjson libhv  zmq  openssl 之外的其他三方库
 
-3.5 原工程可编译运行，模式是 64位 release 模式
+5. 原工程可编译运行，模式是 64位 release 模式
 
 
 4.启动流程
@@ -111,7 +111,7 @@ config文件，以下面json内容为例
 
 三、发送到zmq的数据格式
 
-1.trades：
+1. trades：
 
 ```json
 {
@@ -129,7 +129,7 @@ config文件，以下面json内容为例
 }
 ```
 
-2.orderbook：
+2. orderbook：
 
 ```json
 {
