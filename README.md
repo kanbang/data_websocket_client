@@ -35,7 +35,7 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
 二、配置文件说明
 
-以下面json内容为例
+config文件，以下面json内容为例
 
 1.  "WSMarketConfig"的每个子元素 表示一个 websocket 连接通道，一个连接通道对应一个发送端口（zmqstr指定）
 
@@ -50,8 +50,6 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
     2） "level":"20" 表示 取20档，即只 发送前20档数据到 zmq
     3） "symbol" 指 订阅哪些品种的行情
 
-三、注释说明
-1.config文件
 
 如果需要同时订阅全品种信息，考虑到python的接收效率 和 交易所单连接可支持的最大订阅数量，建议 分成若干个 连接通道，如下（"binance-f_1"， "binance-f_2"）
 
@@ -108,8 +106,10 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 }
 ```
 
-四、发送到zmq的数据格式
+三、发送到zmq的数据格式
+
 1.trades：
+
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_trades", #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
@@ -127,6 +127,7 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 ```
 
 2.orderbook：
+
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_depth-10",  #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
