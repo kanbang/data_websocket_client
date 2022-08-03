@@ -91,7 +91,7 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 
 ##数据格式
 trades：
-
+```json
 {
     "instrument_id": "binance-f_BTC-USDT_trades", #名称
     "data_type": "trades-feed",  #数据类型
@@ -105,9 +105,10 @@ trades：
     "timestamp": 1648623478.337, #成交时间戳
     "receipt_timestamp": 1648623478.5280075 #本地接受数据时间戳
 }
+```
 
 orderbook：
-
+```json
 {
     "instrument_id": "binance-f_BTC-USDT_depth-10",
     "data_type": "depth-10-feed",
@@ -142,3 +143,4 @@ orderbook：
     "timestamp": 1648623478.583, #成交时间戳
     "receipt_timestamp": 1648623478.6130261 #本地接受数据时间戳
 }
+```
