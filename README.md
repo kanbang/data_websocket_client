@@ -50,39 +50,57 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
     2） "level":"20" 表示 取20档，即只 发送前20档数据到 zmq
     3） "symbol" 指 订阅哪些品种的行情
 
-三、注意
+三、注释说明
+1.config文件
+
 如果需要同时订阅全品种信息，考虑到python的接收效率 和 交易所单连接可支持的最大订阅数量，建议 分成若干个 连接通道，如下（"binance-f_1"， "binance-f_2"）
+
 ```json
 {
-    "WSMarketConfig":
-    {
-        "binance-f_1":
-        {
-            "wsclass":"binance-f",
-            "depth":
-            {
-                "type":"limit",
-                "level":"20",
-                "symbol":["BTC-USDT","ETH-USDT"]
+    "WSMarketConfig": 
+    {                           // 配置总名称 不用动
+        "binance-f_1":          // 交易所线程  命名规则：交易所小写-衍生品类型小写_分区id
+        {  
+            "isstart": "1",     // 是否启动  1启动 0不启动
+            "wsclass": "okx-f", // 解析类名 命名规则：交易所小写-衍生品类型小写
+            "depth": 
+            {                   // 订阅数据类型 depth和trade两种
+                "type": "full", // depth数据类型 目前只有full
+                "level": "20",  // depth数据档位 
+                "symbol": [     // 品种列表
+                    "BTC-USDT", // 交易品种名称 命名规则：品种名称-结算代币
+                    "ETH-USDT"
+                ]
             },
-            "trade":
-            {
-                "symbol":["BTC-USDT","ETH-USDT"]
-            },          
-            "zmqstr":"tcp://127.0.0.1:5551"
+            "trade": 
+            {                   // 订阅数据类型 depth和trade两种
+                "symbol": [
+                    "BTC-USDT",
+                    "ETH-USDT"
+                ]
+            },
+            "zmqstr": "tcp://127.0.0.1:5551"  //zmq发布端口
         },
-        "binance-f_2":
+        "binance-f_2":         // 交易所线程 命名规则：交易所小写-衍生品类型小写_分区id
         {
             "wsclass":"binance-f",
             "depth":
             {
                 "type":"limit",
                 "level":"20",
-                "symbol":["MATIC-USDT","LRC-USDT"]
+                "symbol":
+                [
+                    "LTC-USDT",
+                    "EOS-USDT"
+                ]
             },
             "trade":
             {
-                "symbol":["MATIC-USDT","LRC-USDT"]
+                "symbol":
+                [
+                    "LTC-USDT",
+                    "EOS-USDT"
+                ]
             },          
             "zmqstr":"tcp://127.0.0.1:5552"
         }
@@ -90,8 +108,8 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 }
 ```
 
-##数据格式
-trades：
+四、发送到zmq的数据格式
+1.trades：
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_trades", #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
@@ -108,7 +126,7 @@ trades：
 }
 ```
 
-orderbook：
+2.orderbook：
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_depth-10",  #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
@@ -118,7 +136,7 @@ orderbook：
     "book": {                   #orderbook
         "ask":                   #卖单列表，升序
         {
-            "47412.3": 0.017,
+            "47412.3": 0.017,   #价格：数量
             "47412.7": 0.022,
             "47412.8": 0.117,
             "47412.9": 0.117,
@@ -131,7 +149,7 @@ orderbook：
         },
         "bid":                  #买单列表，降序
         {
-            "47412.2": 4.459,
+            "47412.2": 4.459,   #价格：数量
             "47412.1": 0.001,
             "47411.6": 0.5,
             "47411.2": 2,
