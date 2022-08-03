@@ -37,31 +37,31 @@ public:
 
 	int mf_subscribe_all();
 
-	int mf_subscribe_depth_all();     // ¶©ÔÄ Éî¶ÈĞĞÇé
-	int mf_unsubscribe_depth_all();   // È¡Ïû¶©ÔÄ Éî¶ÈĞĞÇé
+	int mf_subscribe_depth_all();     // è®¢é˜… æ·±åº¦è¡Œæƒ…
+	int mf_unsubscribe_depth_all();   // å–æ¶ˆè®¢é˜… æ·±åº¦è¡Œæƒ…
 
-	int mf_subscribe_trade_all();     // ¶©ÔÄ ³É½»ĞĞÇé
-	int mf_unsubscribe_trade_all();   // ¶©ÔÄ ³É½»ĞĞÇé
-
-
-	int cf_sub_unsub_all(int suborunsub,int subchannel,int limitorfull,int level);  // ¶©ÔÄºËĞÄÊµÏÖ
+	int mf_subscribe_trade_all();     // è®¢é˜… æˆäº¤è¡Œæƒ…
+	int mf_unsubscribe_trade_all();   // è®¢é˜… æˆäº¤è¡Œæƒ…
 
 
-	int mf_parse_depth(Document& doc, long long receivets);         // ½âÎöÉî¶È
-	int mf_parse_depth_limit(Document& doc, long long receivets);   // ½âÎöÉî¶È ¿ìÕÕĞĞÇé
-	int mf_parse_depth_full(Document& doc, long long receivets);    // ½âÎöÉî¶È ÔöÁ¿ĞĞÇé
+	int cf_sub_unsub_all(int suborunsub,int subchannel,int limitorfull,int level);  // è®¢é˜…æ ¸å¿ƒå®ç°
 
-	int mf_parse_trade(Document& doc, long long receivets);    // ½âÎö³É½»ĞĞÇé
+
+	int mf_parse_depth(Document& doc, long long receivets);         // è§£ææ·±åº¦
+	int mf_parse_depth_limit(Document& doc, long long receivets);   // è§£ææ·±åº¦ å¿«ç…§è¡Œæƒ…
+	int mf_parse_depth_full(Document& doc, long long receivets);    // è§£ææ·±åº¦ å¢é‡è¡Œæƒ…
+
+	int mf_parse_trade(Document& doc, long long receivets);    // è§£ææˆäº¤è¡Œæƒ…
 
 	DWORD cf_getCRC(BYTE* ptr, DWORD Size);
 
-	bool cf_check_depthfull(const char* stdinstid, UINT32 excrc);  // ÔöÁ¿ĞĞÇéºË¶Ô
+	bool cf_check_depthfull(const char* stdinstid, UINT32 excrc);  // å¢é‡è¡Œæƒ…æ ¸å¯¹
 
-	int m_thread_ping();  // pingÏß³Ì
+	int m_thread_ping();  // pingçº¿ç¨‹
 
 	int m_subscribe_id;
 
-	int c_needflash_depthfull;     // ÊÇ·ñĞèÒª Ë¢ĞÂ ÔöÁ¿ĞĞÇé
+	int c_needflash_depthfull;     // æ˜¯å¦éœ€è¦ åˆ·æ–° å¢é‡è¡Œæƒ…
 };
 
 

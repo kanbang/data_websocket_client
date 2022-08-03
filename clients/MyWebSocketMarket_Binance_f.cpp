@@ -87,7 +87,7 @@ int MyWebSocketMarket_Binance_f::mf_subscribe_all()
 {
 	mf_subscribe_depth_all();
 	mf_subscribe_trade_all();
-	m_connect_status = 2; // Íê³ÉËùÓÐ¶©ÔÄ
+	m_connect_status = 2; // å®Œæˆæ‰€æœ‰è®¢é˜…
 
 	return 0;
 }
@@ -134,7 +134,7 @@ int MyWebSocketMarket_Binance_f::cf_restreq_all_depthimage(int level)
 
 		req.headers["ACCESS-TIMESTAMP"] = myts.c_str();
 		req.headers["Connection"] = "Keep-Alive";
-		//req->headers["Content-Type"] = "application/json";  //GET ²»ÄÜÓÐ´ËÏîÄ¿
+		//req->headers["Content-Type"] = "application/json";  //GET ä¸èƒ½æœ‰æ­¤é¡¹ç›®
 		req.headers["locale"] = "en-US";
 
 		//req->body = "";

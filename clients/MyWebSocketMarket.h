@@ -65,61 +65,61 @@ public:
 	MyWebSocketMarket();
 	~MyWebSocketMarket();
 
-	CRITICAL_SECTION m_cs_subscribe;          // ×¢²áËø      
+	CRITICAL_SECTION m_cs_subscribe;          // æ³¨å†Œé”      
 
-	CRITICAL_SECTION m_cs_update_depth;        // Éî¶È¸üĞÂËø 
+	CRITICAL_SECTION m_cs_update_depth;        // æ·±åº¦æ›´æ–°é” 
 
 	WebSocketClient m_ws;
 	reconn_setting_t m_reconn;
 	http_headers m_headers;
 
-	std::string m_wsurl;           // ws µØÖ·
+	std::string m_wsurl;           // ws åœ°å€
 	std::string m_wsid;            // ws id
 
 	
-	long long m_onmessage_count;   // ÏûÏ¢½ÓÊÕÊıÁ¿
-	long long m_onmessage_ts;      // ×îºóÒ»´ÎÏûÏ¢½ÓÊÕÊ±¼ä
-	long long m_pingpong_ts;       // ×îºóÒ»´ÎpingÊ±¼ä
-	long long m_recvcount_depth;   // ½ÓÊÕµ½ Éî¶ÈĞĞÇé ÊıÁ¿
-	long long m_recvcount_trade;   // ½ÓÊÕµ½ ½»Ò×ĞĞÇé ÊıÁ¿
+	long long m_onmessage_count;   // æ¶ˆæ¯æ¥æ”¶æ•°é‡
+	long long m_onmessage_ts;      // æœ€åä¸€æ¬¡æ¶ˆæ¯æ¥æ”¶æ—¶é—´
+	long long m_pingpong_ts;       // æœ€åä¸€æ¬¡pingæ—¶é—´
+	long long m_recvcount_depth;   // æ¥æ”¶åˆ° æ·±åº¦è¡Œæƒ… æ•°é‡
+	long long m_recvcount_trade;   // æ¥æ”¶åˆ° äº¤æ˜“è¡Œæƒ… æ•°é‡
 
-	int m_connect_status;          // Á¬½Ó×´Ì¬
-	int m_startping;               // pingÏß³ÌÊÇ·ñÆô¶¯
-
-
-	std::map<std::string, std::string> m_map_cnl2std;    // ½»Ò×ËùºÏÔ¼Ãû³Æ µ½ ±ê×¼ºÏÔ¼Ãû³Æ
-	std::map<std::string, std::string> m_map_std2cnl;    // ±ê×¼ºÏÔ¼Ãû³Æ µ½ ½»Ò×ËùºÏÔ¼Ãû³Æ
+	int m_connect_status;          // è¿æ¥çŠ¶æ€
+	int m_startping;               // pingçº¿ç¨‹æ˜¯å¦å¯åŠ¨
 
 
-	std::map<std::string,int> m_map_subinfo_depth;       // ¶©ÔÄµÄÉî¶ÈĞĞÇé
-	int m_subinfo_depth_level; // Éî¶ÈĞĞÇéµÄµµÊı
-	int m_subinfo_depth_type;  // Êı¾İÀàĞÍ  1 ÊÇÊı¾İÈ«ÍÆ   2 Êı¾İÔöÁ¿
-
-	std::map<std::string,int> m_map_subinfo_trade;       // ¶©ÔÄµÄ½»Ò×ĞĞÇé
-
-	std::map<std::string, std::map<double, STR_MYDEPTHFULL, StrCompare_Asc>> m_map_depthfull_ask;   // ÔöÁ¿ĞĞÇé´æ´¢Æ÷ Âô¼Û
-	std::map<std::string, std::map<double, STR_MYDEPTHFULL, StrCompare_Des>> m_map_depthfull_bid;   // ÔöÁ¿ĞĞÇé´æ´¢Æ÷ Âò¼Û
+	std::map<std::string, std::string> m_map_cnl2std;    // äº¤æ˜“æ‰€åˆçº¦åç§° åˆ° æ ‡å‡†åˆçº¦åç§°
+	std::map<std::string, std::string> m_map_std2cnl;    // æ ‡å‡†åˆçº¦åç§° åˆ° äº¤æ˜“æ‰€åˆçº¦åç§°
 
 
-	// ÒÔÏÂº¯ÊıĞèÒª¸ù¾İĞèÇóÖØÔØÊµÏÖ
+	std::map<std::string,int> m_map_subinfo_depth;       // è®¢é˜…çš„æ·±åº¦è¡Œæƒ…
+	int m_subinfo_depth_level; // æ·±åº¦è¡Œæƒ…çš„æ¡£æ•°
+	int m_subinfo_depth_type;  // æ•°æ®ç±»å‹  1 æ˜¯æ•°æ®å…¨æ¨   2 æ•°æ®å¢é‡
 
-	virtual int m_thread_ping();     // pingÏß³Ì  
+	std::map<std::string,int> m_map_subinfo_trade;       // è®¢é˜…çš„äº¤æ˜“è¡Œæƒ…
 
-	virtual void on_open();          // ws »Øµ÷  Á¬½Ó»Øµ÷
-	virtual void on_close();         // ws »Øµ÷  ¶ÏÏß»Øµ÷
-	virtual void on_message(const std::string& msg); // ws »Øµ÷  ÏûÏ¢»Øµ÷
+	std::map<std::string, std::map<double, STR_MYDEPTHFULL, StrCompare_Asc>> m_map_depthfull_ask;   // å¢é‡è¡Œæƒ…å­˜å‚¨å™¨ å–ä»·
+	std::map<std::string, std::map<double, STR_MYDEPTHFULL, StrCompare_Des>> m_map_depthfull_bid;   // å¢é‡è¡Œæƒ…å­˜å‚¨å™¨ ä¹°ä»·
 
-	virtual int mf_subscribe_all();  // ¶©ÔÄËùÓĞÇşµÀ
 
-	virtual int mf_add_subinfo(const char* stdinstid, int datatype);   // Ìí¼Ó´ı¶©ÔÄµÄÇşµÀ
+	// ä»¥ä¸‹å‡½æ•°éœ€è¦æ ¹æ®éœ€æ±‚é‡è½½å®ç°
 
-	virtual void open();    // Á¬½Ó 
+	virtual int m_thread_ping();     // pingçº¿ç¨‹  
 
-	virtual void mf_clear_depthfull();   // ÇåÀí ÔöÁ¿ĞĞÇé´æ´¢Æ÷
+	virtual void on_open();          // ws å›è°ƒ  è¿æ¥å›è°ƒ
+	virtual void on_close();         // ws å›è°ƒ  æ–­çº¿å›è°ƒ
+	virtual void on_message(const std::string& msg); // ws å›è°ƒ  æ¶ˆæ¯å›è°ƒ
 
-	std::string m_logfile;       // log Î»ÖÃ
+	virtual int mf_subscribe_all();  // è®¢é˜…æ‰€æœ‰æ¸ é“
 
-	std::string m_resturl_base;  // http ÇëÇóbaseurl 
+	virtual int mf_add_subinfo(const char* stdinstid, int datatype);   // æ·»åŠ å¾…è®¢é˜…çš„æ¸ é“
+
+	virtual void open();    // è¿æ¥ 
+
+	virtual void mf_clear_depthfull();   // æ¸…ç† å¢é‡è¡Œæƒ…å­˜å‚¨å™¨
+
+	std::string m_logfile;       // log ä½ç½®
+
+	std::string m_resturl_base;  // http è¯·æ±‚baseurl 
 	
 	HttpClient* m_http_client;   // http client
 
