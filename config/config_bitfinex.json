@@ -1,9 +1,12 @@
 {
-    "WSMarketConfig": {
-        "binance-f_1": {
+    "WSMarketConfig": 
+    {
+        "bitfinex-f_1": 
+        {
             "isstart": "1",
             "wsclass": "bitfinex-f",
-            "depth": {
+            "depth": 
+            {
                 "type": "full",
                 "level": "25",
                 "symbol": [
@@ -11,10 +14,33 @@
                     "ETH-USDT"
                 ]
             },
-            "trade": {
+            "trade": 
+            {
                 "symbol": [
                     "BTC-USDT",
                     "ETH-USDT"
+                ]
+            },
+            "zmqstr": "tcp://127.0.0.1:5551"
+        },
+        "bitfinex-f_2": 
+        {
+            "isstart": "1",
+            "wsclass": "bitfinex-f",
+            "depth": 
+            {
+                "type": "full",
+                "level": "25",
+                "symbol": [
+                    "LTC-USDT",
+                    "EOS-USDT"
+                ]
+            },
+            "trade": 
+            {
+                "symbol": [
+                    "LTC-USDT",
+                    "EOS-USDT"
                 ]
             },
             "zmqstr": "tcp://127.0.0.1:5551"
