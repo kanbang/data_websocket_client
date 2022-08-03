@@ -63,11 +63,11 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
             {
                 "type":"limit",
                 "level":"20",
-                "symbol":["BTC-USDT","OP-USDT","GAL-USDT","DAR-USDT","JASMY-USDT","FTT-USDT","WOO-USDT","BNX-USDT"]
+                "symbol":["BTC-USDT","ETH-USDT"]
             },
             "trade":
             {
-                "symbol":["BTC-USDT","OP-USDT","GAL-USDT","DAR-USDT","JASMY-USDT","FTT-USDT","WOO-USDT","BNX-USDT"]
+                "symbol":["BTC-USDT","ETH-USDT"]
             },          
             "zmqstr":"tcp://127.0.0.1:5551"
         },
@@ -78,11 +78,11 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
             {
                 "type":"limit",
                 "level":"20",
-                "symbol":["CTK-USDT","BEL-USDT","CVC-USDT","OCEAN-USDT","MATIC-USDT","LRC-USDT","RSR-USDT"]
+                "symbol":["MATIC-USDT","LRC-USDT"]
             },
             "trade":
             {
-                "symbol":["CTK-USDT","BEL-USDT","CVC-USDT","OCEAN-USDT","MATIC-USDT","LRC-USDT","RSR-USDT"]
+                "symbol":["MATIC-USDT","LRC-USDT"]
             },          
             "zmqstr":"tcp://127.0.0.1:5552"
         }
@@ -94,9 +94,9 @@ https://zeromq.org/get-started/?language=cpp&library=zmqpp#
 trades：
 ```json
 {
-    "instrument_id": "binance-f_BTC-USDT_trades", #名称
-    "data_type": "trades-feed",  #数据类型
-    "exchange": "BINANCE_FUTURES", #交易所——品种类型名称
+    "instrument_id": "binance-f_BTC-USDT_trades", #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
+    "data_type": "trades-feed",  #数据类型 数据类型-feed
+    "exchange": "BINANCE_FUTURES", #交易所大写——衍生品类型大写
     "symbol": "BTC-USDT-PERP", #品种名称
     "side": "buy", #买卖方向
     "amount": 0.1, #成交数量
@@ -111,24 +111,13 @@ trades：
 orderbook：
 ```json
 {
-    "instrument_id": "binance-f_BTC-USDT_depth-10",
-    "data_type": "depth-10-feed",
-    "exchange": "BINANCE_FUTURES",
-    "symbol": "BTC-USDT-PERP",
-    "book": {
-        "bid": {
-            "47412.2": 4.459,
-            "47412.1": 0.001,
-            "47411.6": 0.5,
-            "47411.2": 2,
-            "47409.5": 0.05,
-            "47409.4": 0.097,
-            "47409.3": 4.874,
-            "47408.9": 0.011,
-            "47408.8": 0.838,
-            "47408.7": 4.462
-        },
-        "ask": {
+    "instrument_id": "binance-f_BTC-USDT_depth-10",  #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
+    "data_type": "depth-10-feed",  #数据类型 数据类型-feed
+    "exchange": "BINANCE_FUTURES", #交易所大写——衍生品类型大写
+    "symbol": "BTC-USDT-PERP",  #交易品种-结算品种-衍生品类别
+    "book": {                   #orderbook
+        "ask":                   #卖单列表，升序
+        {
             "47412.3": 0.017,
             "47412.7": 0.022,
             "47412.8": 0.117,
@@ -139,6 +128,19 @@ orderbook：
             "47415.7": 0.008,
             "47415.9": 0.065,
             "47416": 0.189
+        },
+        "bid":                  #买单列表，降序
+        {
+            "47412.2": 4.459,
+            "47412.1": 0.001,
+            "47411.6": 0.5,
+            "47411.2": 2,
+            "47409.5": 0.05,
+            "47409.4": 0.097,
+            "47409.3": 4.874,
+            "47408.9": 0.011,
+            "47408.8": 0.838,
+            "47408.7": 4.462
         }
     },
     "timestamp": 1648623478.583, #成交时间戳
