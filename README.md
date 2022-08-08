@@ -116,7 +116,7 @@ config文件，以下面json内容为例
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_trades", #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
-    "data_type": "trades-feed",  #数据类型 数据类型-feed
+    "data_type": "trades",  #数据类型 数据类型
     "exchange": "BINANCE_FUTURES", #交易所大写——衍生品类型大写
     "symbol": "BTC-USDT-PERP", #品种名称
     "side": "buy", #买卖方向
@@ -134,7 +134,7 @@ config文件，以下面json内容为例
 ```json
 {
     "instrument_id": "binance-f_BTC-USDT_depth-10",  #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
-    "data_type": "depth-10-feed",  #数据类型 数据类型-feed
+    "data_type": "depth-10",  #数据类型 depth-深度档位数
     "exchange": "BINANCE_FUTURES", #交易所大写——衍生品类型大写
     "symbol": "BTC-USDT-PERP",  #交易品种-结算品种-衍生品类别
     "book": {                   #orderbook
