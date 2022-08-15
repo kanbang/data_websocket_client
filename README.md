@@ -169,3 +169,23 @@ config文件，以下面json内容为例
     "receipt_timestamp": 1648623478.6130261 #本地接受数据时间戳
 }
 ```
+
+3. kline：
+
+```json
+{
+    "instrument_id": "binance-f_BTC-USDT_kline",  #数据流名称 命名规则：交易所小写-衍生品类型小写_交易品种-结算品种_数据类型
+    "data_type": "kline",  #数据类型 kline 默认1min
+    "exchange": "BINANCE_FUTURES", #交易所大写——衍生品类型大写
+    "symbol": "BTC-USDT-PERP",  #交易品种-结算品种-衍生品类别
+    "open": 47412.3, #开盘价
+    "high": 47412.3, #最高价
+    "low": 47412.3, #最低价
+    "close": 47412.3, #最近价 收盘价
+    "volume": 0.1, #成交数量
+    "id": "1154117591", #ID
+    "type": None, #类型
+    "timestamp": 1648623478.337, #交易所时间戳
+    "receipt_timestamp": 1648623478.5280075 #本地接受数据时间戳
+}
+```
